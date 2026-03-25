@@ -127,6 +127,86 @@
     .reveal[data-d="5"] { transition-delay: 0.5s; }
     .reveal[data-d="6"] { transition-delay: 0.6s; }
 
+    /* ─── ANIMATED HERO HEADLINE GRADIENT ─── */
+    @keyframes gradientText {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero h1 {
+      background: linear-gradient(135deg, var(--ink) 0%, var(--orange) 30%, var(--ink) 50%, var(--aqua) 75%, var(--ink) 100%);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientText 6s ease infinite;
+    }
+
+    /* ─── SHIMMER PILL ─── */
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .hero-label .pill--dark {
+      background: linear-gradient(90deg, var(--ink) 25%, #444 50%, var(--ink) 75%);
+      background-size: 200% auto;
+      animation: shimmer 2.5s linear infinite;
+    }
+
+    /* ─── PULSE on CTA BUTTONS ─── */
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(232,96,28,0.4); }
+      50%       { box-shadow: 0 0 0 10px rgba(232,96,28,0); }
+    }
+    .btn--gold { animation: ctaPulse 2.5s ease infinite; }
+
+    /* ─── BOUNCE IN for journey circles ─── */
+    @keyframes bounceIn {
+      0%   { transform: scale(0); opacity: 0; }
+      60%  { transform: scale(1.2); opacity: 1; }
+      80%  { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    .journey-step.visible .journey-circle {
+      animation: bounceIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    .journey-step:nth-child(1).visible .journey-circle { animation-delay: 0.1s; }
+    .journey-step:nth-child(2).visible .journey-circle { animation-delay: 0.2s; }
+    .journey-step:nth-child(3).visible .journey-circle { animation-delay: 0.3s; }
+    .journey-step:nth-child(4).visible .journey-circle { animation-delay: 0.4s; }
+    .journey-step:nth-child(5).visible .journey-circle { animation-delay: 0.5s; }
+
+    /* ─── ROTATING BORDER on story portraits ─── */
+    .story-card:not(.story-card--dark) {
+      position: relative;
+    }
+    .story-portrait-wrap {
+      padding: 3px;
+      background: linear-gradient(var(--angle, 0deg), var(--orange), var(--yellow-bright), var(--aqua), var(--orange));
+      animation: rotateBorder 4s linear infinite;
+    }
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes rotateBorder {
+      to { --angle: 360deg; }
+    }
+
+    /* ─── FLOATING ORBS in journey section ─── */
+    .journey-orbs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .journey-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      animation: orbDrift 8s ease-in-out infinite;
+    }
+    @keyframes orbDrift {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-30px) scale(1.08); }
+    }
+
     /* ─── SCROLL PROGRESS BAR ─── */
     #scroll-progress {
       position: fixed;
@@ -667,8 +747,14 @@
     .press-bar { background: var(--gold); }
 
     /* ─── JOURNEY ─── */
-    .journey { background: var(--dark); padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem); }
-    .journey .section-label { color: rgba(255,255,255,0.5); }
+    .journey { background: var(--orange); padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem); position: relative; overflow: hidden; }
+    .journey::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 40px, transparent 40px, transparent 80px);
+      pointer-events: none;
+    }
+    .journey .section-label { color: rgba(255,255,255,0.7); position: relative; }
     .journey h2 {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
@@ -676,6 +762,7 @@
       color: var(--white);
       margin: 1rem 0 3rem;
       max-width: 1200px;
+      position: relative;
     }
     .journey-inner { max-width: 1200px; margin: 0 auto; }
     .journey-steps {
@@ -710,16 +797,16 @@
       position: relative;
       z-index: 1;
     }
-    .journey-step:nth-child(1) .journey-circle { background: var(--orange); color: var(--white); }
+    .journey-step:nth-child(1) .journey-circle { background: var(--white); color: var(--orange); }
     .journey-step:nth-child(2) .journey-circle { background: var(--yellow-bright); color: var(--ink); }
-    .journey-step:nth-child(3) .journey-circle { background: var(--aqua); color: var(--ink); }
-    .journey-step:nth-child(4) .journey-circle { background: var(--orange-light); color: var(--white); }
-    .journey-step:nth-child(5) .journey-circle { background: var(--yellow-bright); color: var(--ink); }
+    .journey-step:nth-child(3) .journey-circle { background: var(--white); color: var(--orange); }
+    .journey-step:nth-child(4) .journey-circle { background: var(--yellow-bright); color: var(--ink); }
+    .journey-step:nth-child(5) .journey-circle { background: var(--white); color: var(--orange); }
     .journey-date {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.08em;
-      color: var(--gold);
+      color: rgba(255,255,255,0.85);
       text-transform: uppercase;
       margin-bottom: 0.5rem;
     }
@@ -733,7 +820,7 @@
     .journey-step p {
       font-size: 0.82rem;
       line-height: 1.6;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.8);
     }
 
     /* ─── ACTIVITIES ─── */
@@ -902,13 +989,13 @@
     }
 
     /* ─── PRESS QUOTES ─── */
-    .press-quotes { background: var(--dark); padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem); }
-    .press-quotes .section-label { color: rgba(255,255,255,0.4); }
+    .press-quotes { background: var(--aqua-light); padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem); }
+    .press-quotes .section-label { color: var(--muted); }
     .press-quotes h2 {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
       font-size: clamp(2.5rem, 4.5vw, 4.5rem);
-      color: var(--white);
+      color: var(--ink);
       margin: 1rem 0 3rem;
       max-width: 1200px;
     }
@@ -919,7 +1006,7 @@
       gap: 1.5rem;
     }
     .quote-card {
-      background: #2A2A2A;
+      background: var(--ink);
       border-radius: 16px;
       padding: 2.5rem;
       border-top: 4px solid var(--border);
@@ -981,9 +1068,10 @@
     }
     .story-portrait {
       width: 100%;
-      height: 220px;
-      object-fit: cover;
-      object-position: top;
+      height: auto;
+      max-height: 380px;
+      object-fit: contain;
+      background: #f0ebe2;
       display: block;
     }
     .story-body { padding: 1.75rem; }
@@ -1013,10 +1101,12 @@
     .story-card--dark .story-attribution { color: var(--gold); }
     .story-img-bg {
       width: 100%;
-      height: 220px;
-      object-fit: cover;
+      height: auto;
+      max-height: 280px;
+      object-fit: contain;
       display: block;
-      opacity: 0.3;
+      opacity: 0.25;
+      background: #111;
     }
     .stories-cta { text-align: center; margin-top: 3rem; }
 
@@ -1418,8 +1508,8 @@
 <div class="ticker-top">
   <div class="marquee-wrap">
     <div class="marquee-inner">
-      <span>TINKERHUB CAMPUS LEADERSHIP PROGRAMME 2026 ★ APPLICATIONS OPEN — DEADLINE MARCH 26 ★ ONBOARDING CAMP · WINTER CAMP · SUMMER CAMP · GRADUATION ★ EXCLUSIVE FOR CAMPUS LEADS ACROSS KERALA ★ 66+ CAMPUSES · 16,977+ MAKERS ★ SELECTION CAMP — END OF APRIL ★</span>
-      <span>TINKERHUB CAMPUS LEADERSHIP PROGRAMME 2026 ★ APPLICATIONS OPEN — DEADLINE MARCH 26 ★ ONBOARDING CAMP · WINTER CAMP · SUMMER CAMP · GRADUATION ★ EXCLUSIVE FOR CAMPUS LEADS ACROSS KERALA ★ 66+ CAMPUSES · 16,977+ MAKERS ★ SELECTION CAMP — END OF APRIL ★</span>
+      <span>TINKERHUB CAMPUS LEADERSHIP PROGRAMME 2026 ★ APPLICATIONS OPEN — DEADLINE MARCH 26 ★ ONBOARDING CAMP · WINTER CAMP · SUMMER CAMP · GRADUATION ★ EXCLUSIVE FOR CAMPUS LEADS ACROSS KERALA ★ 58 CAMPUSES · 3,000+ MAKERS ★ SELECTION CAMP — END OF APRIL ★</span>
+      <span>TINKERHUB CAMPUS LEADERSHIP PROGRAMME 2026 ★ APPLICATIONS OPEN — DEADLINE MARCH 26 ★ ONBOARDING CAMP · WINTER CAMP · SUMMER CAMP · GRADUATION ★ EXCLUSIVE FOR CAMPUS LEADS ACROSS KERALA ★ 58 CAMPUSES · 3,000+ MAKERS ★ SELECTION CAMP — END OF APRIL ★</span>
     </div>
   </div>
 </div>
@@ -1489,11 +1579,11 @@
     </div>
     <div class="hero-stats">
       <div class="hero-stat reveal">
-        <span class="stat-num" data-count data-target="16977" data-suffix="+">16,977+</span>
+        <span class="stat-num" data-count data-target="3000" data-suffix="+">3,000+</span>
         <span class="stat-label">Makers across Kerala</span>
       </div>
       <div class="hero-stat reveal" data-d="1">
-        <span class="stat-num" data-count data-target="66" data-suffix="+">66+</span>
+        <span class="stat-num" data-count data-target="58">58</span>
         <span class="stat-label">Campus chapters</span>
       </div>
       <div class="hero-stat reveal" data-d="2">
@@ -1572,6 +1662,11 @@
 
 <!-- JOURNEY -->
 <section id="journey" class="journey">
+  <div class="journey-orbs">
+    <div class="journey-orb" style="width:200px;height:200px;top:-60px;left:5%;animation-delay:0s;"></div>
+    <div class="journey-orb" style="width:140px;height:140px;bottom:40px;right:8%;animation-delay:2s;"></div>
+    <div class="journey-orb" style="width:80px;height:80px;top:40%;left:50%;animation-delay:4s;"></div>
+  </div>
   <div class="journey-inner">
     <div class="section-label reveal">Your year as a lead</div>
     <h2 class="reveal">The Lead Journey</h2>
@@ -1692,8 +1787,8 @@
 <div class="ticker-mid">
   <div class="marquee-wrap">
     <div class="marquee-inner marquee-inner--rtl">
-      <span>BUILD STUFF THAT MATTERS ★ SHOW UP FOR YOUR CAMPUS ★ NO EXPERIENCE NEEDED — JUST CURIOSITY ★ 66+ CAMPUSES ACROSS KERALA ★ 16,977+ MAKERS AND COUNTING ★ BE THE ONE WHO BUILDS THIS ★ APPLICATIONS CLOSE MARCH 26 ★</span>
-      <span>BUILD STUFF THAT MATTERS ★ SHOW UP FOR YOUR CAMPUS ★ NO EXPERIENCE NEEDED — JUST CURIOSITY ★ 66+ CAMPUSES ACROSS KERALA ★ 16,977+ MAKERS AND COUNTING ★ BE THE ONE WHO BUILDS THIS ★ APPLICATIONS CLOSE MARCH 26 ★</span>
+      <span>BUILD STUFF THAT MATTERS ★ SHOW UP FOR YOUR CAMPUS ★ NO EXPERIENCE NEEDED — JUST CURIOSITY ★ 58 CAMPUSES ACROSS KERALA ★ 3,000+ MAKERS AND COUNTING ★ BE THE ONE WHO BUILDS THIS ★ APPLICATIONS CLOSE MARCH 26 ★</span>
+      <span>BUILD STUFF THAT MATTERS ★ SHOW UP FOR YOUR CAMPUS ★ NO EXPERIENCE NEEDED — JUST CURIOSITY ★ 58 CAMPUSES ACROSS KERALA ★ 3,000+ MAKERS AND COUNTING ★ BE THE ONE WHO BUILDS THIS ★ APPLICATIONS CLOSE MARCH 26 ★</span>
     </div>
   </div>
 </div>
@@ -1709,7 +1804,7 @@
         <span class="why-stat-label">Engineering and arts colleges across Kerala — most without a structured maker or builder community</span>
       </div>
       <div class="why-stat reveal" data-d="2">
-        <span class="why-stat-num" data-count data-target="16977">16,977</span>
+        <span class="why-stat-num" data-count data-target="3000">3,000</span>
         <span class="why-stat-label">TinkerHub members across Kerala — proof that there is hunger to learn and build</span>
       </div>
       <div class="why-stat reveal" data-d="3">
@@ -1783,7 +1878,7 @@
     <h2 class="reveal">Stories from Campus</h2>
     <div class="stories-grid">
       <div class="story-card card-hover reveal" data-d="1">
-        <img src="images/community-portrait.jpg" alt="Suhana" class="story-portrait" />
+        <div class="story-portrait-wrap"><img src="images/community-portrait.jpg" alt="Suhana" class="story-portrait" /></div>
         <div class="story-body">
           <div class="story-role"><span class="pill pill--sage">Campus Lead · CoE Perumon</span></div>
           <h3>"It's about taking the first step and learning slowly."</h3>
@@ -1792,7 +1887,7 @@
         </div>
       </div>
       <div class="story-card card-hover reveal" data-d="2">
-        <img src="images/vivek.jpg" alt="Vivek Venugopal" class="story-portrait" />
+        <div class="story-portrait-wrap"><img src="images/vivek.jpg" alt="Vivek Venugopal" class="story-portrait" /></div>
         <div class="story-body">
           <div class="story-role"><span class="pill pill--orange">Best Campus · CoE Punnapra</span></div>
           <h3>"I build the kind of campus I want to find."</h3>
@@ -2037,6 +2132,35 @@
     });
   }, { threshold: 0.5 });
   countEls.forEach(el => countObserver.observe(el));
+
+  // ── CARD 3D TILT ──
+  document.querySelectorAll('.card-hover').forEach(card => {
+    card.style.transition = 'transform 0.25s ease, box-shadow 0.25s ease';
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
+      card.style.boxShadow = `${-x * 12}px ${-y * 12}px 32px rgba(0,0,0,0.12)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+
+  // ── PARALLAX PHOTO BANNER ──
+  const bannerImg = document.querySelector('.photo-banner img');
+  if (bannerImg) {
+    window.addEventListener('scroll', () => {
+      const banner = bannerImg.closest('.photo-banner');
+      const rect = banner.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight) {
+        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        bannerImg.style.transform = `translateY(${(progress - 0.5) * 60}px)`;
+      }
+    }, { passive: true });
+  }
 
   // ── SCROLL PROGRESS BAR ──
   const progressBar = document.getElementById('scroll-progress');
