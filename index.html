@@ -591,6 +591,72 @@
       border-radius: 16px;
       display: block;
     }
+    /* ─── HERO ILLUSTRATION ─── */
+    .hero-illu {
+      background: var(--cream-alt);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      justify-content: center;
+    }
+    .hero-illu::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(135deg, rgba(232,96,28,0.04) 0px, rgba(232,96,28,0.04) 1px, transparent 1px, transparent 24px);
+      pointer-events: none;
+    }
+    .hero-illu-year {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1;
+      color: var(--ink);
+    }
+    .hero-illu-year em {
+      font-style: italic;
+      background: linear-gradient(120deg, var(--orange), var(--yellow-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-illu-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .hero-illu-chip {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .hero-illu-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--muted);
+      border-left: 3px solid var(--orange);
+      padding-left: 1rem;
+    }
+    .hero-illu-bar {
+      display: flex;
+      gap: 4px;
+      height: 6px;
+    }
+    .hero-illu-bar span {
+      flex: 1;
+      border-radius: 3px;
+    }
     .hero-photo-badge {
       position: absolute;
       bottom: 20px;
@@ -946,8 +1012,8 @@
     .stories-featured { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
     .story-featured-card, .story-side-card { background: var(--cream-alt); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
     .story-portrait-wrap { overflow: hidden; }
-    .story-portrait-lg { width: 100%; height: 280px; object-fit: cover; object-position: top; display: block; }
-    .story-portrait-sm { width: 100%; height: 200px; object-fit: cover; object-position: top; display: block; }
+    .story-portrait-lg { width: 100%; height: auto; max-height: 360px; object-fit: contain; background: var(--cream); display: block; }
+    .story-portrait-sm { width: 100%; height: auto; max-height: 280px; object-fit: contain; background: var(--cream); display: block; }
     .story-body { padding: 1.5rem; }
     .story-role { margin-bottom: 0.75rem; }
     .story-featured-card h3, .story-side-card h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.6rem; line-height: 1.4; }
@@ -960,7 +1026,7 @@
     .story-full-img-col { position: relative; overflow: hidden; min-height: 240px; }
     .story-full-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; display: block; }
     @media (max-width: 900px) { .stories-featured { grid-template-columns: 1fr; } .story-full-card { grid-template-columns: 1fr; } .story-full-img-col { height: 200px; } }
-    @media (max-width: 640px) { .story-portrait-lg { height: 220px; } .story-portrait-sm { height: 180px; } }
+    @media (max-width: 640px) { .story-portrait-lg { max-height: 240px; } .story-portrait-sm { max-height: 200px; } }
 
     /* ─── AWARDS RIBBON ─── */
     .awards-ribbon { background: var(--cream-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem clamp(1.5rem, 5vw, 4rem); }
@@ -1296,16 +1362,29 @@
           <span class="pill pill--dark">Campus Leadership Programme 2026</span>
         </div>
         <h1>Lead the <em>Learning</em><br>Revolution.</h1>
-        <p class="hero-sub">Most college programmes teach you to clear exams. This one teaches you to actually build something — a community, a culture, a campus where people want to show up. Backed by 16,000+ makers across Kerala.</p>
+        <p class="hero-sub">Most college programmes teach you to clear exams. This one teaches you to actually build something — a community, a culture, a campus where people want to show up. Backed by 30,000+ makers across Kerala.</p>
         <div class="hero-btns">
           <a href="https://airtable.com/appdFV7VvqOIlQ36v/shrKV8t5K5JgtfUOj" target="_blank" class="btn btn--gold">Apply Now</a>
           <a href="#about" class="btn btn--outline-dark">What's this?</a>
         </div>
       </div>
       <div class="hero-image-col">
-        <div class="hero-photo-wrap">
-          <img src="images/class2024-group.jpg" alt="TinkerHub Class of 2024 Convocation" class="hero-photo" />
-          <div class="hero-photo-badge">Class of 2024 · Convocation</div>
+        <div class="hero-illu">
+          <div class="hero-illu-year">CLP<br><em>'26</em></div>
+          <div class="hero-illu-chips">
+            <div class="hero-illu-chip" style="background:var(--orange);color:#fff">🎓 30,000+ Makers</div>
+            <div class="hero-illu-chip" style="background:var(--yellow-bright);color:var(--ink)">🏫 58 Campuses</div>
+            <div class="hero-illu-chip" style="background:var(--aqua);color:var(--ink)">📅 1-Year Programme</div>
+            <div class="hero-illu-chip" style="background:var(--ink);color:#fff">⚡ Apply by Apr 10</div>
+          </div>
+          <div class="hero-illu-quote">"The best campus experiences don't just happen. Somebody builds them."</div>
+          <div class="hero-illu-bar">
+            <span style="background:var(--orange)"></span>
+            <span style="background:var(--yellow-bright)"></span>
+            <span style="background:var(--aqua)"></span>
+            <span style="background:var(--orange-light)"></span>
+            <span style="background:var(--sage)"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -1479,37 +1558,45 @@
             <p>Leads showcase everything built on campus over the year — posters, demos, stories. Messy, honest, and buzzing with energy.</p>
           </div>
         </div>
+        <div class="act-card">
+          <img src="images/class2024-wide.jpg" alt="Class of 2024 WE DID IT group" class="act-card-img" />
+          <div class="act-card-body">
+            <span class="act-num" style="color:var(--orange-light)">04</span>
+            <h3>Graduation Day</h3>
+            <p>At the end of it all — certificates, red backdrops, and a room full of people who built something real together. This is what the year leads to.</p>
+          </div>
+        </div>
         <div class="act-card" style="border-top:4px solid var(--orange-light)">
           <div class="act-card-body">
-            <span class="act-num act-num--big" style="color:var(--yellow-bright)">04</span>
+            <span class="act-num act-num--big" style="color:var(--yellow-bright)">05</span>
             <h3>Beyond the Blueprint</h3>
             <p>Real talks from builders, founders, designers. No corporate BS — just honest conversations about the messy real world.</p>
           </div>
         </div>
         <div class="act-card" style="border-top:4px solid var(--aqua)">
           <div class="act-card-body">
-            <span class="act-num act-num--big" style="color:var(--orange-light)">05</span>
+            <span class="act-num act-num--big" style="color:var(--orange-light)">06</span>
             <h3>Study Jams</h3>
             <p>Multi-week cohort-based learning — Python, product design, open source. Structured enough to finish, flexible enough to work in college.</p>
           </div>
         </div>
         <div class="act-card" style="border-top:4px solid var(--orange)">
           <div class="act-card-body">
-            <span class="act-num act-num--big" style="color:var(--aqua)">06</span>
+            <span class="act-num act-num--big" style="color:var(--aqua)">07</span>
             <h3>Open Mics</h3>
             <p>Show up. Share what you're building or obsessing over. Half-baked ideas welcome. Nobody checks if it's polished.</p>
           </div>
         </div>
         <div class="act-card" style="border-top:4px solid var(--yellow-bright)">
           <div class="act-card-body">
-            <span class="act-num act-num--big" style="color:var(--orange)">07</span>
+            <span class="act-num act-num--big" style="color:var(--orange)">08</span>
             <h3>Maker Stories</h3>
             <p>We document the process, not just the outcome. Because how someone built something is usually way more interesting than what they built.</p>
           </div>
         </div>
         <div class="act-card" style="border-top:4px solid var(--orange-light)">
           <div class="act-card-body">
-            <span class="act-num act-num--big" style="color:var(--yellow-bright)">08</span>
+            <span class="act-num act-num--big" style="color:var(--yellow-bright)">09</span>
             <h3>Community Building</h3>
             <p>Onboarding drives, orientation events, cross-campus collabs. The unglamorous work that makes everything else actually happen.</p>
           </div>
@@ -1579,7 +1666,7 @@
     <h2 class="reveal">Stories from Campus</h2>
     <div class="stories-featured">
       <div class="story-featured-card card-hover reveal" data-d="1">
-        <div class="story-portrait-wrap"><img src="images/community-portrait.jpg" alt="Suhana" class="story-portrait-lg" /></div>
+        <div class="story-portrait-wrap"><img src="images/suhana.jpg" alt="Suhana" class="story-portrait-lg" /></div>
         <div class="story-body">
           <div class="story-role"><span class="pill pill--sage">Campus Lead · CoE Perumon</span></div>
           <h3>"It's about taking the first step and learning slowly."</h3>
@@ -1648,15 +1735,15 @@
     <h2 class="reveal">2026–27 Programme Schedule</h2>
     <div class="accordion">
       <div class="acc-item acc-open">
-        <button class="acc-header"><span class="acc-date">Mar 26</span><span class="acc-title">Application Deadline</span><span class="acc-pill">Deadline</span><span class="acc-arrow">↓</span></button>
-        <div class="acc-body"><p>Video application form closes. Submit before midnight.</p></div>
+        <button class="acc-header"><span class="acc-date">Apr 10</span><span class="acc-title">Application Deadline</span><span class="acc-pill">Deadline</span><span class="acc-arrow">↓</span></button>
+        <div class="acc-body"><p>Application form closes. Submit before midnight on April 10.</p></div>
       </div>
       <div class="acc-item">
-        <button class="acc-header"><span class="acc-date">Apr 2026</span><span class="acc-title">Online Interviews</span><span class="acc-arrow">↓</span></button>
-        <div class="acc-body"><p>Shortlisted candidates interview with the TinkerHub team.</p></div>
+        <button class="acc-header"><span class="acc-date">Apr 25</span><span class="acc-title">Online Review</span><span class="acc-arrow">↓</span></button>
+        <div class="acc-body"><p>Shortlisted candidates go through an online review with the TinkerHub team.</p></div>
       </div>
       <div class="acc-item">
-        <button class="acc-header"><span class="acc-date">Late Apr</span><span class="acc-title">Selection Camp</span><span class="acc-pill">In-person</span><span class="acc-arrow">↓</span></button>
+        <button class="acc-header"><span class="acc-date">May 12–16</span><span class="acc-title">Selection Camp</span><span class="acc-pill">In-person</span><span class="acc-arrow">↓</span></button>
         <div class="acc-body"><p>In-person residential camp. Final selection of the 2026 cohort.</p></div>
       </div>
       <div class="acc-item">
