@@ -1027,8 +1027,8 @@
     .stories-featured { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; margin-bottom: 1.5rem; }
     .story-featured-card, .story-side-card { background: var(--cream-alt); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
     .story-portrait-wrap { overflow: hidden; border-radius: 12px 12px 0 0; }
-    .story-portrait-lg { width: 100%; height: 320px; object-fit: cover; object-position: center top; display: block; }
-    .story-portrait-sm { width: 100%; height: 280px; object-fit: cover; object-position: center top; display: block; }
+    .story-portrait-lg { width: 100%; height: auto; display: block; }
+    .story-portrait-sm { width: 100%; height: auto; display: block; }
     .story-body { padding: 1.5rem; }
     .story-role { margin-bottom: 0.75rem; }
     .story-featured-card h3, .story-side-card h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.6rem; line-height: 1.4; }
@@ -1041,7 +1041,7 @@
     .story-full-img-col { position: relative; overflow: hidden; min-height: 240px; }
     .story-full-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; display: block; }
     @media (max-width: 900px) { .stories-featured { grid-template-columns: 1fr; } .story-full-card { grid-template-columns: 1fr; } .story-full-img-col { height: 200px; } }
-    @media (max-width: 640px) { .story-portrait-lg { height: 220px; } .story-portrait-sm { height: 180px; } }
+    @media (max-width: 640px) { .story-portrait-lg { height: auto; } .story-portrait-sm { height: auto; } }
 
     /* ─── AWARDS RIBBON ─── */
     .awards-ribbon { background: var(--cream-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem clamp(1.5rem, 5vw, 4rem); }
